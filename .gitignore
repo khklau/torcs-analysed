@@ -30,3 +30,35 @@
 *.exe
 *.out
 *.app
+
+# Build meta files
+.depend
+.torcs.rc
+Make-config
+aclocal.m4
+autom4te.cache/**
+config.h*
+config.status
+configure*
+config.log
+export/**
+setup_linux.sh
+src/doc/torcsdoc.conf
+
+# Build artifacts
+src/libs/txml/gennmtab/gennmtab
+src/linux/torcs
+src/linux/torcs-bin
+src/tools/accc/accc
+src/tools/accc/accc-bin
+src/tools/nfs2ac/nfs2ac
+src/tools/nfs2ac/nfs2ac-bin
+src/tools/nfsperf/nfsperf
+src/tools/nfsperf/nfsperf-bin
+src/tools/texmapper/texmapper
+src/tools/texmapper/texmapper-bin
+src/tools/trackgen/trackgen
+src/tools/trackgen/trackgen-bin
+
+# Generated RPM specs
+*.spec
