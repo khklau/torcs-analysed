@@ -630,6 +630,7 @@ ReOneStep(double deltaTimeIncrement)
 
 	ReInfo->_reCurTime += deltaTimeIncrement * ReInfo->_reTimeMult; /* "Real" time */
 	s->currentTime += deltaTimeIncrement; /* Simulated time */
+	s->currentFrame += 1; /* Simulation frame */
 
 	if (s->currentTime < 0) {
 		/* no simu yet */
@@ -700,7 +701,7 @@ reCapture(void)
 	glReadBuffer(GL_FRONT);
 	glReadPixels((sw-vw)/2, (sh-vh)/2, vw, vh, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*)img);
 
-	snprintf(buf, BUFSIZE, "%s/torcs-%4.4d-%8.8d.png", capture->outputBase, capture->currentCapture, capture->currentFrame++);
+	snprintf(buf, BUFSIZE, "%s/torcs-%4.4d-%20.20lu.png", capture->outputBase, capture->currentCapture, ReInfo->s->currentFrame);
 	GfImgWritePng(img, buf, vw, vh);
 	free(img);
 }

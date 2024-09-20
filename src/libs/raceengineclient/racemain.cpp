@@ -311,6 +311,7 @@ static int reRaceRealStart(void)
 	ReInfo->_reLastTime = -1.0;
 	ReInfo->s->currentTime = -2.0;
 	ReInfo->s->deltaTime = RCM_MAX_DT_SIMU;
+	ReInfo->s->currentFrame = 0;
 
 	ReInfo->s->_raceState = RM_RACE_STARTING;
 
