@@ -441,3 +441,28 @@ ReResShowCont(void)
     glutPostRedisplay();
 }
 
+void
+ReStartMovieCapture(void)
+{
+	tRmMovieCapture	*capture = &(ReInfo->movieCapture);
+	if (!capture->state) {
+		printf("Starting Video Capture\n");
+		reMovieCapture(nullptr);
+	}
+	else {
+		printf("Start Video Captured Requested But Capture Already Started\n");
+	}
+}
+
+void
+ReStopMovieCapture(void)
+{
+	tRmMovieCapture	*capture = &(ReInfo->movieCapture);
+	if (capture->state) {
+		printf("Stopping Video Capture\n");
+		reMovieCapture(nullptr);
+	}
+	else {
+		printf("Stop Video Captured Requested But No Capture Is Running\n");
+	}
+}

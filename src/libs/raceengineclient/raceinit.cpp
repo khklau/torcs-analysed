@@ -98,6 +98,17 @@ ReInit(void)
 		capture->outputBase = GfParmGetStr(ReInfo->_reParam, RM_SECT_MOVIE_CAPTURE, RM_ATT_CAPTURE_OUT_DIR, "/tmp");
 		capture->deltaSimu = RCM_MAX_DT_SIMU;
 	}
+	capture->fromStart = (
+		strcmp(
+			GfParmGetStr(
+				ReInfo->_reParam,
+				RM_SECT_MOVIE_CAPTURE,
+				RM_ATT_CAPTURE_FROM_START,
+				"yes"
+			),
+			"yes"
+		) == 0
+	);
 
 	ReInfo->_reGameScreen = ReHookInit();
 }
@@ -176,6 +187,7 @@ void ReRunRaceOnConsole(const char* raceconfig)
 	reEventModList->modInfo->fctInit(reEventModList->modInfo->index, &ReInfo->_reTrackItf);
 
 	ReInfo->movieCapture.enabled = 0;
+	ReInfo->movieCapture.fromStart = false;
 
 	const char *s, *e, *m;
 
@@ -826,6 +838,7 @@ ReRaceCleanup(void)
 		startMenuMusic();
 	}
 	ReStoreRaceResults(ReInfo->_reRaceName);
+	ReStopMovieCapture();
 	ReRaceCleanDrivers();
 }
 
