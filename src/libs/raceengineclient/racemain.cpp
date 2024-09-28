@@ -84,6 +84,7 @@ AbortRaceHookActivate(void * /* dummy */)
 		startMenuMusic();
 	}
 	ReInfo->_reGraphicItf.shutdowntrack();
+	ReStopMovieCapture();
 	ReRaceCleanDrivers();
 
 	FREEZ(ReInfo->_reCarInfo);
@@ -323,6 +324,10 @@ static int reRaceRealStart(void)
 			/* RmLoadingScreenSetText("Loading Cars 3D Objects..."); */
 			stopMenuMusic();
 			ReInfo->_reGraphicItf.initcars(s);
+		}
+		if (ReInfo->movieCapture.fromStart)
+		{
+			ReStartMovieCapture();
 		}
 
 		GfuiScreenActivate(ReInfo->_reGameScreen);

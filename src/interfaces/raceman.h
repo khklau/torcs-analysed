@@ -208,6 +208,7 @@ typedef struct RmMovieCapture
     const char *outputBase;
     int		currentCapture;
     int		currentFrame;
+    bool	fromStart;
 } tRmMovieCapture;
 
 
@@ -319,6 +320,7 @@ typedef struct RmInfo
 #define RM_ATT_CAPTURE_ENABLE	"enable capture"
 #define RM_ATT_CAPTURE_FPS	"fps"
 #define RM_ATT_CAPTURE_OUT_DIR	"output directory"
+#define RM_ATT_CAPTURE_FROM_START	"capture from start"
 
 /* RESULTS */
 

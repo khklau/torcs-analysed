@@ -41,6 +41,8 @@ extern void ReResScreenRemoveText(int line);
 extern void ReResShowCont(void);
 extern int  ReResGetLines(void);
 extern void ReResEraseScreen(void);
+extern void ReStartMovieCapture(void);
+extern void ReStopMovieCapture(void);
 
 #endif /* _RACEGL_H_ */ 
 
