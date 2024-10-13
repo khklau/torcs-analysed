@@ -23,6 +23,7 @@
     @version	$Id: raceengine.cpp,v 1.19.2.23 2014/08/05 23:05:06 berniw Exp $
 */
 
+#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <tgfclient.h>
@@ -682,11 +683,10 @@ ReStop(void)
 }
 
 static void
-reCapture(void)
+reCapture(tRmMovieCapture* capture, tSituation* sit)
 {
 	unsigned char *img;
 	int sw, sh, vw, vh;
-	tRmMovieCapture	*capture = &(ReInfo->movieCapture);
 	const int BUFSIZE = 1024;
 	char buf[BUFSIZE];
 	
@@ -701,7 +701,7 @@ reCapture(void)
 	glReadBuffer(GL_FRONT);
 	glReadPixels((sw-vw)/2, (sh-vh)/2, vw, vh, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*)img);
 
-	snprintf(buf, BUFSIZE, "%s/torcs-%4.4d-%20.20lu.png", capture->outputBase, capture->currentCapture, ReInfo->s->currentFrame);
+	snprintf(buf, BUFSIZE, "%s/torcs-%4.4d-%20.20lu.png", capture->outputBase, capture->currentCapture, sit->currentFrame);
 	GfImgWritePng(img, buf, vw, vh);
 	free(img);
 }
@@ -760,7 +760,7 @@ ReUpdate(void)
 
 			GfuiDisplay();
 			ReInfo->_reGraphicItf.refresh(ReInfo->s);
-			reCapture();
+			reCapture(&(ReInfo->movieCapture), ReInfo->s);
 			glutPostRedisplay();	/* Callback -> reDisplay */
 			break;
 

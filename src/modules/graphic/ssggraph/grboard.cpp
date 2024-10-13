@@ -439,6 +439,11 @@ cGrBoard::grDispCarBoard2(tCarElt *car, tSituation *s)
 	grWriteTime(clr, GFUI_FONT_SMALL_C, x2, y, car->_penaltyTime, 0);
 	y -= dy;
 
+	GfuiPrintString("Step:", clr, GFUI_FONT_SMALL_C, x, y, GFUI_ALIGN_HL_VB);
+	snprintf(buf, BUFSIZE, "%d", s->currentFrame);
+	GfuiPrintString(buf, clr, GFUI_FONT_SMALL_C, x2, y, GFUI_ALIGN_HR_VB);
+	y -= dy;
+
 	if (car->_pos != 1) {
 		snprintf(buf, BUFSIZE, "<- %s", s->cars[car->_pos - 2]->_name);
 		GfuiPrintString(buf, clr, GFUI_FONT_SMALL_C, x, y, GFUI_ALIGN_HL_VB);
