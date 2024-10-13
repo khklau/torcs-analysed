@@ -34,16 +34,8 @@
 # Build meta files
 .depend
 .torcs.rc
-Make-config
-aclocal.m4
 autom4te.cache/**
-config.h*
-config.status
-configure*
-config.log
 export/**
-setup_linux.sh
-src/doc/torcsdoc.conf
 
 # Build artifacts
 src/libs/txml/gennmtab/gennmtab
